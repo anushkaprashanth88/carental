@@ -1,0 +1,50 @@
+{% include 'user_header.html' %}
+<br><br><br><br><br>
+
+<center>
+	<h2>VIEW ITEMS</h2>
+
+	<form method="post" style="margin-top: 50px;">
+		<table>
+			<tr>
+				<td><input type="search" name="search" class="form-control" placeholder="Search By Item" id=""></td>
+				<td><input type="submit" name="filter" value="SEARCH" class="btn btn-success" id=""></td>
+			</tr>
+		</table>
+	</form>
+
+
+	<form method="post">
+		<table class="table" style="width: 1000px;margin-top:50px">
+			<tr>
+				<th>OWNER NAME</th>
+				<th>ITEM NAME</th>
+				<th>QUANTITY</th>
+				<th>RENT/DAY</th>
+                <th>DESCRIPTION</th>
+				<th>IMAGE1</th>
+				<th></th>
+				
+				
+				
+				
+			</tr>
+			{% for row in obj %}
+			<tr>
+				<td>{{ row.owner.first_name }} {{ row.owner.second_name }}</td>
+				<td>{{ row.item_name }}</td>
+				<td>{{ row.quantity }}</td>
+                <td>{{ row.rent_per_item}}</td>
+				<td>{{ row.description }}</td>
+				<td><img src="/static/{{ row.image }}" style="width: 150px;height: 100px;"></td>
+					<td><a href="/user_view_owners/{{ row.owner_id}} " class="btn btn-info">VIEW OWNER'S PROFILE</a>
+					</td>
+					<td><a href="/user_booking_item/{{ row.item_id}}/{{ row.rent_per_item }}" class="btn btn-success">BOOK</a></td>
+				</tr>
+			{% endfor %}
+		</table>
+		
+	</form>
+	</center>
+
+{% include 'footer.html' %}

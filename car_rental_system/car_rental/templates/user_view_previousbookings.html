@@ -1,0 +1,45 @@
+{% include 'user_header.html' %}
+
+
+<center>
+	<h2>VIEW VEHICLES</h2>
+
+	<form method="post">
+		<table border="2">
+			<tr>
+				
+				<th>VEHICLE NAME</th>
+				<th>FROM DATE</th>
+				<th>TO DATE</th>
+				<th>RETURNED DATE</th>
+				<th>BOOKED DATETIME</th>
+				<th>PER DAY RENT</th>
+				<th>STATUS</th>
+
+				
+				
+				
+				
+			</tr>
+			{% for row in data['view_booking'] %}
+			<tr>
+				
+				<td>{{ row['brand'] }}</td>
+				<td>{{ row['from_date'] }}</td>
+				<td>{{ row['to_date'] }}</td>
+				<td>{{ row['returned_date'] }}</td>
+				<td>{{ row['booked_datetime'] }}</td>
+				<td>{{ row['per_day_rent']}}</td>
+						
+				<td>{{ row['booking_status']}}</td>
+				
+				<td><a href="?action=accept&o_id={{ row['owner_id']}}&v_id={{ row['vehicle_id']}}&b_id={{ row['booking_id']}} ">SEND FEEDBACK</a>
+					
+			
+			</tr>
+			{% endfor %}
+		</table>
+		
+	</form>
+	</center>
+

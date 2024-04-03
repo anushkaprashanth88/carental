@@ -1,0 +1,95 @@
+{% include 'owner_header.html'%}
+<form method="post" enctype="multipart/form-data">
+	<center>
+	<table class="table" style="width : 500px;">
+		<h2 style="padding-top: 200px;">Vehicle Registration</h2>
+		
+		<tr>
+			<td>BRAND</td>
+			<td><input type="text" class="form-control" name="brand" value="{% if obj2 %} {{ obj2.brand }} {% endif %}"></td>
+		</tr>
+		<tr>
+			<td>MODEL</td>
+			<td><input type="text" class="form-control" name="model" value="{% if obj2 %} {{ obj2.model }} {% endif %}"></td>
+		</tr>
+		<tr>
+			<td>COLOUR</td>
+			<td><input type="text" class="form-control" name="colour" value="{% if obj2 %} {{ obj2.colour }} {% endif %}"></td>
+		</tr>
+		<tr>
+			<td>NO.OF.SEATS</td>
+			<td><input type="text" class="form-control" name="seats" value="{% if obj2 %} {{ obj2.no_seat }} {% endif %}"></td>
+		</tr>
+		<tr>
+			<th>PER DAY RENT</th>
+			<td><input type="text" class="form-control" name="rent" value="{% if obj2 %} {{ obj2.per_day_rent }} {% endif %}"></td>
+		</tr>
+		<tr>
+			<td>DESCRIPTION</td>
+			<td><input type="text" class="form-control" name="description" value="{% if obj2 %} {{ obj2.description }} {% endif %}"></td>
+		</tr>
+		
+		<tr>
+			<td>IMAGE1</td>
+			<td><input type="file" class="form-control" name="img1" value="{% if obj2 %} {{ obj2.vehicle_image }} {% endif %}"></td>
+		</tr>
+
+
+		
+		<tr>
+			{% if obj2 %}
+			<td colspan="2" align="center"><input type="submit" class="btn btn-warning" name="update" value="UPDATE"></td>
+			{% else %}
+			<td  colspan="2" align="center"><input type="submit" class="btn btn-warning" name="upload" value="UPLOAD"></td>
+			{% endif %}
+		</tr>
+	</table>
+
+
+	<table class="table" style="width : 1100px;">
+		<h2>Vehicle Details</h2>
+		<tr>
+			<td>BRAND</td>
+			<td>MODEL</td>
+			<td>COLOUR</td>
+			<td>NO.OF.SEATS</td>
+			<td>DESCRIPTION</td>
+			<td>PER DAY RENT</td>
+			<td>vehicle_image</td>
+			<!-- <td>IMAGE2</td> -->
+			<td>CAR STATUS</td>
+		</tr>
+		{% for row in obj %}
+		<tr>
+			<td>{{ row.brand }}</td>
+			<td>{{ row.model }}</td>
+			<td>{{ row.colour }}</td>
+			<td>{{ row.no_seat }}</td>
+			<td>{{ row.description }}</td>
+			<td>{{ row.per_day_rent }}</td>
+			<td><img src="static/{{ row.vehicle_image }}" alt="" style="width : 150px; height : 150px;"></td>
+			<!-- <td><img src="/{{ row.image2 }}" alt="" style="width : 150px; height : 150px;"></td> -->
+			<td>{{ row.car_status }}</td>
+			{% if row.car_status == "APPROVED" %}
+				<td>
+					<a class="btn btn-success" href="/owner_vehicle_available/{{ row.vehicle_id }}">Available</a>
+					<a class="btn btn-warning" href="/owner_vehicle_notavailable/{{ row.vehicle_id }}">Not Available</a></td>
+			{% elif row.car_status == "Available" %}
+				<td><a class="btn btn-warning" href="/owner_vehicle_notavailable/{{ row.vehicle_id }}">Not Available</a></td>
+			{% elif row.car_status == "Not Available" %}
+				<td><a class="btn btn-success" href="/owner_vehicle_available/{{ row.vehicle_id }}">Available</a></td>
+			{% endif %}
+			<td><a class="btn btn-danger" href="/owner_delete_vehicle/{{ row.vehicle_id }}">Delete</a>
+				<a class="btn btn-warning" href="/owner_update_vehicle/{{ row.vehicle_id }}">Update</a></td>
+
+			<td>
+				<a class="btn btn-warning" href="/upload_img/{{ row.vehicle_id }}">Upload Images</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+
+		</center>
+</form>
+
+
+{% include 'footer.html'%}

@@ -1,0 +1,29 @@
+{% include 'user_header.html'%}
+<br><br><br><br><br><br><br><br><br><br>
+<form method="post">
+	<center>
+	<table class="table" style="width: 500px;">
+		<tr>
+			
+			<td> MODEL</td>
+			<td>{{ obj.model }}</td>
+		</tr>
+		
+		<tr>
+			
+			<td>BALANCE PAYMENT</td>
+			<td>{{ amt.balance_amount }}</td>
+			</tr>
+			
+		<tr>
+			<td colspan="2" align="center"><a href="/user_return_payment/{{id1}}" class="btn btn-primary">pay</a>
+				<!-- <input type="submit" name="pay" value="PAY" > -->
+			</td>
+		</tr>
+		
+	</table>
+	</center>
+</form>
+
+<br><br><br><br><br>
+{% include 'footer.html'%}

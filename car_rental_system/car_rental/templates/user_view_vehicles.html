@@ -1,0 +1,53 @@
+{% include 'user_header.html' %}
+<br><br><br><br><br>
+
+<center>
+	<h2>VIEW VEHICLES</h2>
+
+
+	<form method="post" style="margin-top: 50px;">
+		<table>
+			<tr>
+				<td><input type="search" name="search" class="form-control" placeholder="Search By Brand" id=""></td>
+				<td><input type="submit" name="filter" value="SEARCH" class="btn btn-success" id=""></td>
+			</tr>
+		</table>
+	</form>
+
+	<form method="post">
+		<table class="table" style="width: 1000px;margin-top:50px">
+			<tr>
+				<th>OWNER NAME</th>
+				<th>BRAND</th>
+				<th>MODEL</th>
+				<th>COLOUR</th>
+				<th>NO.OF.SEATS</th>
+				<th>DESCRIPTION</th>
+				<th>RENT/DAY</th>
+				<th>IMAGE1</th>
+				
+				
+				
+				
+			</tr>
+			{% for row in obj %}
+			<tr>
+				<td>{{ row.owner.first_name }} {{ row.owner.second_name }}</td>
+				<td>{{ row.brand }}</td>
+				<td>{{ row.model }}</td>
+				<td>{{ row.colour }}</td>
+				<td>{{ row.no_seat }}</td>
+				<td>{{ row.description }}</td>
+				<td>{{ row.per_day_rent}}</td>
+				<td><img src="/static/{{ row.vehicle_image }}" style="width: 150px;height: 100px;"></td>
+					<td><a href="/user_view_owners/{{ row.owner_id}} " class="btn btn-info">VIEW OWNER'S PROFILE</a>
+					</td>
+					<td><a href="/user_booking/{{ row.vehicle_id}}/{{ row.per_day_rent}}" class="btn btn-success">BOOK</a></td>
+				</tr>
+			{% endfor %}
+		</table>
+		
+	</form>
+	</center>
+
+{% include 'footer.html' %}

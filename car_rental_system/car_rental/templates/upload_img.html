@@ -1,0 +1,60 @@
+{% include 'owner_header.html'%}
+<form method="post" enctype="multipart/form-data">
+	<center>
+	<table class="table" style="width : 500px;">
+		<h2 style="padding-top: 200px;">Upload Images</h2>
+
+		<tr>
+			<td>Title</td>
+			<td><input type="text" class="form-control" name="title" value="{% if obj %} {{ obj.brand }} {% endif %}"></td>
+		</tr>
+		
+		
+		<tr>
+			<td>IMAGE</td>
+			<td><input type="file" class="form-control" name="img1" value="{% if obj %} {{ obj.image1 }} {% endif %}"></td>
+		</tr>
+		
+
+		
+		<tr>
+			{% if obj %}
+			<td colspan="2" align="center"><input type="submit" class="btn btn-warning" name="update" value="UPDATE"></td>
+			{% else %}
+			<td  colspan="2" align="center"><input type="submit" class="btn btn-warning" name="upload" value="UPLOAD"></td>
+			{% endif %}
+		</tr>
+	</table>
+
+
+	<table class="table" style="width : 1100px;">
+		<h2>View Images</h2>
+		<tr>
+			<td>Title</td>
+			<td>Image</td>
+		
+			<!-- <td>IMAGE1</td>
+			<td>IMAGE2</td> -->
+			
+		</tr>
+		{% for row in obj2 %}
+		<tr>
+			<td>{{ row.title }}</td>
+		
+			<td><img src="/static/{{ row.img }}" alt="" style="width : 150px; height : 150px;"></td>
+			<!-- <td><img src="/{{ row.image2 }}" alt="" style="width : 150px; height : 150px;"></td> -->
+			
+			<td><a class="btn btn-danger" href="/owner_delete_image/{{ row.img_id }}">Delete</a>
+				<!-- <a class="btn btn-warning" href="?action=update&id={{ row.img_id }}">Update</a></td> -->
+
+			<!-- <td>
+				<a class="btn btn-warning" href="upload_img?vid={{ row.vehicle_id }}">Upload Images</a></td> -->
+		</tr>
+		{% endfor %}
+	</table>
+
+		</center>
+</form>
+
+
+{% include 'footer.html'%}

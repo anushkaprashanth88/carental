@@ -1,0 +1,46 @@
+{% include 'admin_header.html' %}
+
+
+<center>
+	<h2 style="padding-top: 200px;">VIEW BOOKINGS</h2>
+
+	<form method="post">
+		<table class="table" style="width: 80%;margin-top:50px">
+			<tr>
+				<th>NAME</th>
+				<th>BOOKING TYPE</th>
+				<th>FROM DATE</th>
+				<th>TO DATE</th>
+				<th>RETURNED DATE</th>
+				<th>BOOKED DATETIME</th>
+				<!-- <th>balance_amount</th> -->
+				<!-- <th>COMMISSION</th> -->
+				<th>STATUS</th>	
+			</tr>
+			{% for row in obj %}
+			<tr>
+				<td>{{ row.user.first_name }}</td>
+				<td>{{ row.book_for_type }}</td>
+				<td>{{ row.from_date }}</td>
+				<td>{{ row.to_date }}</td>
+				<td>{{ row.returned_date }}</td>
+				<td>{{ row.booked_datetime }}</td>
+				<td>{{ row.balance_amount}}</td>
+				
+				<td>{{ row.booking_status }}</td>
+				
+				{% if row.booking_status == "returned" %}
+				<td><a class="btn btn-primary" href="/admin_view_payments/{{row.booking_id}}">VIEW COMMISION</a>
+					<a class="btn btn-info" href="/admin_view_feedback/{{row.booking_id }}">View Feedback</a></td> 
+
+				
+			{% endif %}
+			</tr>
+			{% endfor %}
+		</table>
+		
+	</form>
+	</center>
+
+
+	{% include "footer.html" %}

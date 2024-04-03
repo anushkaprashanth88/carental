@@ -1,0 +1,50 @@
+{% include 'owner_header.html' %}
+
+
+<center>
+	<h2 style="padding-top: 200px;">Return Request</h2>
+
+	<form method="post">
+		<table class="table" style="width: 600px;">
+			<tr>
+				<th>From Date</th>
+				<td><input type="text" class="form-control" name="fdate" value="{{ fdate }}" id=""></td>	
+			</tr>
+			
+			<tr>
+				<th>To Date</th>
+				<td><input type="text" class="form-control" name="tdate" value="{{ tdate }}" id=""></td>	
+			</tr>
+
+			<tr>
+				<th>Return Date</th>
+				<td><input type="text" class="form-control" name="fdate" value="{{ rdate }}" id=""></td>	
+			</tr>
+			<tr>
+				<th>Total Days</th>
+				<td><input type="text" class="form-control" name="totaldays" value="{{ delta1 }}" id=""></td>	
+			</tr>
+
+			<tr>
+				<th>Advance Amount</th>
+				<td><input type="text" class="form-control" name="bal_amount" value="{{ bal_amount }}" id=""></td>	
+			</tr>
+			<tr>
+				<th>Per Day Rent</th>
+				<td><input type="text" class="form-control" name="per_day" value="{{ per_day }}" id=""></td>
+			</tr>
+
+			<tr>
+				<th>Balace Amount</th>
+				<td><input type="text" class="form-control" name="brent_amount"  id="" value="{{ brent_amount }}"></td>	
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit" class="btn btn-success" name="bal" value="Accept" id=""></td>
+			</tr>
+		</table>
+		
+	</form>
+	</center>
+
+
+	{% include "footer.html" %}

@@ -1,0 +1,49 @@
+{% include 'user_header.html'%}
+<br><br><br><br><br>
+	<center>
+		<h2 style="font-family: 'Courier New', Courier, monospace;">View Previous Item Bookings</h2>
+
+	<form method="post">
+		<table class="table ">
+			<tr>
+				
+				<!-- <th >VEHICLE NAME</th> -->
+				<th >FROM DATE</th>
+				<th >TO DATE</th>
+				<th >RETURNED DATE</th>
+				<th>BOOKED DATETIME</th>
+				<!-- <th >PER DAY RENT</th> -->
+                <th >DETAILS</th>
+				<th >STATUS</th>
+				<th></th>
+			</tr>
+			{% for row in obj %}
+			<tr>
+				
+				<!-- <td >{{ row.book_for_id.brand }}</td> -->
+				<td >{{ row.from_date }}</td>
+				<td >{{ row.to_date }}</td>
+				<td >{{ row.returned_date }}</td>
+				<td >{{ row.booked_datetime }}</td>
+				<!-- <td >{{ row.book_for_id.per_day_rent}}</td> -->
+                <td><a href="/user_item_details/{{ row.book_for_id }}" class="btn btn-info">More Details</a></td>		
+				<td >{{ row.booking_status}}</td>
+				{% if row.booking_status == "APPROVED" %}
+				<td><a href="/user_payment/{{row.book_for_type}}/{{row.book_for_id}}/{{row.booking_id}}" class="btn btn-success">PAY ADVANCE</a>
+				{% elif row.booking_status == "Delivered" %}
+				<td><a href="/user_return_req/{{ row.book_for_id }}/{{ row.booking_id}}" class="btn btn-success">RETURN REQUEST</a>
+				{% elif row.booking_status == "Return Req Accepted" %}
+				<td><a href="/user_return_vehicle/{{ row.book_for_id }}/{{ row.booking_id}}"class="btn btn-success">RETURN ITEM</a>
+
+				<!-- <td><a href="?action=return&o_id={{ row.owner_id}}&v_id={{ row.vehicle_id}}&b_id={{ row.booking_id}} ">RETURN VEHICLE</a> -->
+				{% elif row.booking_status == "returned" %}
+				<td><a href="/user_feedback/{{ row.booking_id}}" class="btn btn-success">SEND FEEDBACK</a>
+					{%else%}
+					<td></td>
+					{%endif%}
+			</tr>
+			{% endfor %}		
+		</table>	
+	</form>
+	</center>
+{%include 'footer.html'%}

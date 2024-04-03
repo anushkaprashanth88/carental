@@ -1,0 +1,33 @@
+{% include 'owner_header.html'%}
+<form action="" method="post">
+    <center>
+		<table class="table" style="width : 1270px;">
+			<h2 style="padding-top: 200px;"> RENT AMOUNT DETAILS</h2>
+			<tr>
+				<td>TYPE</td>
+				<td>TYPE MODEL</td> 
+				<td>TOTAL KILOMETER</td>
+				<td>RATE</td>
+				<td>DURATION (Days)</td>
+				<td>EXTRA KILOMETER RATE</td>
+				<td>DATE</td>
+			</tr>
+			{% for row in data['ov_rent_details'] %}
+			<tr>
+				<td>{{ row['type_name'] }}</td>
+				<td>{{ row['type_model'] }}</td>
+				<td>{{ row['total_km'] }}</td>
+				<td>{{ row['rate'] }}</td>
+				<td>{{ row['duration'] }}</td>
+				<td>{{ row['extra_km_rate'] }}</td>
+				<td>{{ row['date_time'] }}</td>
+				<td><a class="btn btn-primary" href="owner_manage_vehicles?type_id={{ row['type_id'] }}">MANAGE VEHICLE</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+
+		</center>
+</form>
+
+
+{% include 'footer.html'%}

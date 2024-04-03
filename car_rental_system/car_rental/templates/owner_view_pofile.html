@@ -1,0 +1,33 @@
+{% include 'owner_header.html'%}
+
+<form method="post" enctype="multipart/form-data">
+	<center>
+	<table class="table" style="width : 500px;">
+		<h2 style="padding-top: 200px;">Profile</h2>
+		
+		{% for row in obj %}
+
+		<tr>
+			<td colspan="2" align="center"><a href="/static/{{ row.image }}"><img src="/static/{{ row.image }}" style="width : 150px; height : 150px;border-radius : 50%"></a></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">{{ row.first_name }} {{ row.second_name }}</td>
+		</tr>
+		
+		<tr>
+			<td>PLACE</td>
+			<td>{{ row.place}}</td>
+		</tr>
+		<tr>
+			<td>PHONE</td>
+			<td>{{ row.phone}}</td>
+		</tr>
+		<tr>
+			<td>email</td>
+			<td>{{ row.email}}</td>
+		</tr>
+		{%endfor%}
+	</table>
+	</center>
+</form>
+{% include 'footer.html'%}

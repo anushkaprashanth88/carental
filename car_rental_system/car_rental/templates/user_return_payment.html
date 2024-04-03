@@ -1,0 +1,36 @@
+{%include 'user_header.html'%}
+<br><br><br><br><br>
+<form method="post">
+	<CENTER>
+	<p>PAYMENTS</p>
+	<table width="60px" cellpadding="22" class="table" style="width: 500px;">
+		<tr>
+			<td>ENTER CARDNUMBER</td>
+			<td><input type="text" name="cnumber" class="form-control" required></td>
+		</tr>
+		<tr>
+			<td>NAME ON CARD</td>
+			<td><input type="text" name="cname" class="form-control" required></td>
+		</tr>
+		<tr>
+			<td>VALID THRU(MM/YY)</td>
+		<TD><input type="text" name="valid" class="form-control" required></TD>
+		</tr>
+		<tr>
+			<td>CVV</td>
+			<td><input type="text" name="cvv" class="form-control" required></td>
+		</tr>
+		
+		<tr>
+			<td>BALANCE PAYMENT</td>
+			<td>{{ amt }}</td></tr>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" class="btn btn-primary" name="ok" value="PAY"></td>
+		</tr>
+	</table>
+	
+	</CENTER>
+</form>
+
+{%include 'footer.html'%}

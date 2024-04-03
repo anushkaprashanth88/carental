@@ -1,0 +1,35 @@
+{% include 'admin_header.html' %}
+
+
+<center>
+	<table class="table" style="width : 500px;">
+		<h2 style="padding-top: 200px;">View Images</h2>
+		<tr>
+			<td>Title</td>
+			<td>Image</td>
+		
+			<!-- <td>IMAGE1</td>
+			<td>IMAGE2</td> -->
+			
+		</tr>
+		{% for row in obj %}
+		<tr>
+			<td>{{ row.title }}</td>
+		
+			<td><a href="/static/{{ row.img }}"><img src="/static/{{ row.img }}" alt="" style="width : 150px; height : 150px;"></a></td>
+			<!-- <td><img src="/{{ row.image2 }}" alt="" style="width : 150px; height : 150px;"></td> -->
+			
+			
+				<!-- <a class="btn btn-warning" href="?action=update&id={{ row.img_id }}">Update</a></td> -->
+
+			<!-- <td>
+				<a class="btn btn-warning" href="upload_img?vid={{ row.vehicle_id }}">Upload Images</a></td> -->
+		</tr>
+		{% endfor %}
+	</table>
+
+		</center>
+
+
+
+{% include 'footer.html'%}

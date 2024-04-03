@@ -1,0 +1,27 @@
+{% include 'owner_header.html' %}
+
+
+<center>
+	<h2 style="padding-top: 200px;">VIEW PAYMENTS</h2>
+
+	<form method="post">
+		<table class="table" style="width: 800px;">
+			<tr>
+				<th>PAYMENT STATUS</th>
+				<th>AMOUNT</th>
+				<th>COMMISION</th>
+				<th>DATETIME</th>
+			</tr>
+			
+			<tr>
+				<td>{{ obj.payment_type }}</td>
+				<td>{{ obj.amount}}</td>
+				<td>{{amt}}</td>
+				<td>{{ obj.datetime }}</td>
+	
+		</table>
+		
+	</form>
+	</center>
+
+{% include "footer.html" %}

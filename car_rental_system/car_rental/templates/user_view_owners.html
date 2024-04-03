@@ -1,0 +1,29 @@
+{% include 'user_header.html'%}
+<br><br><br><br><br>
+<center>
+	<h2>VIEW OWNER DETAILS</h2>
+
+	<form method="post">
+		<table class="table" style="width: 800px;margin-top:50px">
+			<tr>
+				<th>NAME</th>
+				<th>PHONE</th>
+				<th>EMAIL</th>
+				<th>USER IMAGE</th>
+				
+				
+			</tr>
+			{% for row in obj %}
+			<tr>
+				<td>{{ row.first_name }} {{row.second_name}}</td>
+				<td>{{ row.phone }}</td>
+				<td>{{ row.email }}</td>
+				<td><img src="/static/{{ row.image }}" style="width: 150px;height: 100px;"></td>
+				
+			{% endfor %}
+		</table>
+		
+	</form>
+	</center>
+
+{% include 'footer.html' %}

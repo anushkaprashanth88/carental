@@ -1,0 +1,54 @@
+{% include 'admin_header.html' %}
+
+
+<center>
+	<h2 style="padding-top: 200px;">VIEW VEHICLES</h2>
+
+	<form method="post">
+		<table class="table" style="width: 1200px;">
+			<tr>
+				<th>VEHICLE IMAGE</th>
+				<th>OWNER NAME</th>
+				<th>BRAND</th>
+				<th>MODEL</th>
+				<th>COLOUR</th>
+				<th>NO.OF.SEATS</th>
+				<th>DESCRIPTION</th>
+				<th>PER DAY RENT</th>
+					<th>STATUS</th>
+				
+				
+				
+			</tr>
+			{% for row in obj %}
+			<tr>
+				<td><img src="/static/{{ row.vehicle_image }}" style="width: 125px;height: 125px;"></td>
+				<td>{{ row.owner.first_name }} {{ row.owner.second_name }}</td>
+				<td>{{ row.brand }}</td>
+				<td>{{ row.model }}</td>
+				<td>{{ row.colour }}</td>
+				<td>{{ row.no_seat }}</td>
+				<td>{{ row.description }}</td>
+				<td>{{ row.per_day_rent }}</td>
+				
+	
+				<td>{{ row.car_status}}</td>
+				{% if row.car_status == "pending" %}
+				<td><a class="btn btn-success" href="/admin_accept_vehicle/{{ row.vehicle_id}} ">Accept</a>
+					<a  class="btn btn-danger" href="/admin_reject_vehicle/{{ row.vehicle_id}} ">Reject</a></td>
+					
+				{% elif row.car_status == "APPROVED" or row.car_status == "Available" or row.car_status == "Not Available"  %}
+				
+
+			{% endif %}
+			<td><a  class="btn btn-info" href="/admin_view_images/{{ row.vehicle_id }}">VIEW FILES</a>
+			</tr>
+			{% endfor %}
+		</table>
+		
+	</form>
+	</center>
+
+
+
+	{% include "footer.html" %}

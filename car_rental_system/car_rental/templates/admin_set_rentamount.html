@@ -1,0 +1,74 @@
+{% include'admin_header.html'%}
+<form method="post">
+	<center>
+		<h3  style="padding-top: 200px;">SET RENT AMOUNT</h3>
+	<table class="table" style="width: 600px;">
+		{% if data['uprent'] %}
+		<tr>
+			<td>TYPE</td>
+			<td><input type="text" class="form-control" name="type" readonly value="{{ data['uprent'][0]['type_name'] }}"></td>
+		</tr>
+		{% else %}
+
+		<tr>
+			<td>TYPE</td>
+			<td><select name="type" id="" class="form-control">
+				<option value="">-- Select Type --</option>
+				{% for row in data['type_desp'] %}
+				<option value="{{ row['type_id'] }}">{{ row['type_name'] }} - {{ row['type_model'] }}</option>
+				{% endfor %}
+			</select></td>
+		</tr>
+		{% endif %}
+		<tr>
+			<td>TOTAL KILOMETER</td>
+			<td><input type="text" class="form-control" name="totalkm" value="{% if data['uprent'] %} {{ data['uprent'][0]['total_km'] }} {% endif %}"></td>
+		</tr>
+		<tr>
+			<td>RATE</td>
+			<td><input type="text" class="form-control" name="rate" value="{% if data['uprent'] %} {{ data['uprent'][0]['rate'] }} {% endif %}"></td>
+		</tr>
+		<tr>
+			<td>DURATION (Days)</td>
+			<td><input type="text" class="form-control" name="duration" value="{% if data['uprent'] %} {{ data['uprent'][0]['duration'] }} {% endif %}"></td>
+		</tr>
+		<tr>
+			<td>EXTRA KILOMETER RATE</td>
+			<td><input type="text" name="extra" class="form-control" value="{% if data['uprent'] %} {{ data['uprent'][0]['extra_km_rate'] }} {% endif %}"></td>
+		</tr>
+
+		<tr>
+			{% if data['uprent'] %}
+				<td colspan="2" align="center"><input type="submit" class="btn btn-warning btn-lg" name="urent" value="UPDATE"></td>
+			{% else %}
+				<td colspan="2" align="center"><input type="submit" class="tbn btn-danger btn-lg" name="rent" value="ADD"></td>
+			{% endif %}
+		</tr>
+	</table>
+
+		<table class="table" style="width: 1000px;">
+			<h2> RENT AMOUNT DETAILS</h2>
+			<tr>
+				<td>TYPE</td>
+				<td>TOTAL KILOMETER</td>
+				<td>RATE</td>
+				<td>DURATION (Days)</td>
+				<td>EXTRA KILOMETER RATE</td>
+				<td>DATE</td>
+			</tr>
+			{% for row in data['rent_details'] %}
+			<tr>
+				<td>{{ row['type_name'] }}</td>
+				<td>{{ row['total_km'] }}</td>
+				<td>{{ row['rate'] }}</td>
+				<td>{{ row['duration'] }}</td>
+				<td>{{ row['extra_km_rate'] }}</td>
+				<td>{{ row['date_time'] }}</td>
+				<td><a class="btn btn-warning" href="?action=update&rtid={{ row['rent_id'] }}">UPDATE</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</center>
+</form>
+
+{% include "footer.html" %}

@@ -1,0 +1,36 @@
+{% include 'admin_header.html'%}
+<center>
+	<h2 style="padding-top: 200px;">VIEW OWNERS</h2>
+
+	<form method="post">
+		<table align="right">
+			<tr>
+				<td><input type="search" name="search" class="form-control" placeholder="Search By Place" id=""></td>
+				<td><input type="submit" name="filter" value="SEARCH" class="btn btn-success" id=""></td>
+			</tr>
+		</table>
+		<table class="table" style="width: 1000px;">
+			<tr>
+				<th>NAME</th>
+				<th>PLACE</th>
+				<th>PHONE</th>
+				<th>EMAIL</th>
+				<th>USER IMAGE</th>
+				
+				
+			</tr>
+			{% for row in obj %}
+			<tr>
+				<td>{{ row.first_name }} {{row.second_name}}</td>
+				<td>{{ row.place }}</td>
+				<td>{{ row.phone }}</td>
+				<td>{{ row.email }}</td>
+				<td><img src="/static/{{ row.image }}" style="width: 150px;height: 150px;"></td>
+				<td><a class="btn btn-primary" href="admin_approve_vehicles/{{ row.owner_id }}">VIEW VEHICLES</a></td>
+			{% endfor %}
+		</table>
+		
+	</form>
+	</center>
+
+{% include 'footer.html' %}

@@ -1,0 +1,94 @@
+{% include 'user_header.html'%}
+<br><br><br><br><br>
+
+<h2><center>SEND FEEDBACK</center></h2>
+<form method="post">
+	<center>
+<table class="table" style="width: 500px;">
+	<tr>
+		<td>RATING</td>
+		<!-- <td><input type="text" name="rating" placeholder="rate it"></td> -->
+		<td><div class="rating">
+			<input type="radio" id="star5" name="rating" value="5" />
+			<label for="star5" title="5 stars"> </label>
+			<input type="radio" id="star4" name="rating" value="4" />
+			<label for="star4" title="4 stars"> </label>
+			<input type="radio" id="star3" name="rating" value="3" />
+			<label for="star3" title="3 stars"> </label>
+			<input type="radio" id="star2" name="rating" value="2" />
+			<label for="star2" title="2 stars"> </label>
+			<input type="radio" id="star1" name="rating" value="1" />
+			<label for="star1" title="1 star"> </label>
+		</div></td>
+	</tr>
+		
+		<tr>
+			<td>ENTER FEEDBACK</td>
+			<td><input type="text" name="feedback" required="" class="form-control"></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2"><input type="submit" class="btn btn-primary" name="send" value="SEND" ></td>
+		</tr>
+		</table>
+		<br>
+		<h2>PREVIOUS FEEDBACKS</h2>
+		{% if obj %}
+		
+		<table style="width: 600px;margin-top:20px" cellpadding="22" class="table">
+			<tr>
+				<th>RATING</th>
+				<th>FEEDBACK</th>
+				<th>DATE</th>
+			</tr>
+			{% for row in obj %}
+			<tr>
+			<td>{{ row.rating}}</td>
+			<td>{{ row.description }}</td>
+			<td>{{ row.datetime }}</td>
+
+			</tr>
+			{% endfor %}
+
+		</table>{% else %}
+<br><h3>No history</h3><br>
+		{% endif %}
+		</center>
+		
+	
+		</center>
+		</form>
+
+
+
+		<style>
+			.rating {
+				display: flex;
+				flex-direction: row-reverse;
+				justify-content: center;
+			}
+		
+			.rating input {
+				display: none;
+			}
+		
+			.rating label {
+				color: #ddd;
+				font-size: 5rem;
+				cursor: pointer;
+			}
+		
+			.rating label:before {
+				content: '★';
+			}
+		
+			.rating input:checked ~ label {
+				color: #fdd835;
+			}
+		
+			.rating label:hover,
+			.rating label:hover ~ label {
+				color: #fdd835;
+			}
+		</style>
+		
+{% include 'footer.html'%}

@@ -1,0 +1,27 @@
+{% include 'admin_header.html' %}
+<center>
+    <table class="table" style="width: 1000px;;">
+        <h2 style="padding-top: 200px;"> RENT AMOUNT DETAILS</h2>
+        <tr>
+            <td>TYPE</td>
+            <th>TYPE MODEL</th>
+            <td>TOTAL KILOMETER</td>
+            <td>RATE</td>
+            <td>DURATION (Days)</td>
+            <td>EXTRA KILOMETER RATE</td>
+            <td>DATE</td>
+        </tr>
+        {% for row in data['view_more'] %}
+        <tr>
+            <td>{{ row['type_name'] }}</td>
+            <td>{{ row['type_model'] }}</td>
+            <td>{{ row['total_km'] }}</td>
+            <td>{{ row['rate'] }}</td>
+            <td>{{ row['duration'] }}</td>
+            <td>{{ row['extra_km_rate'] }}</td>
+            <td>{{ row['date_time'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+    {% include 'footer.html' %}

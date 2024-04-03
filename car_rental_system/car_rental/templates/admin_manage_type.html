@@ -1,0 +1,40 @@
+{% include 'admin_header.html' %}
+
+<form method="post">
+	<center>
+		<h3 style="padding-top: 200px;">MANAGE TYPE</h3>
+	<table class="table" style="width: 600px;">
+		<tr>
+			<td>TYPE NAME</td>
+			<td><input type="text" class="form-control" name="typename"></td>
+		</tr>
+		<tr>
+			<td>TYPE MODEL</td>
+			<td><input type="text" class="form-control" name="typemodel"></td>
+		</tr>
+
+		<tr>
+			<td colspan="2" align="center"><input type="submit" class="btn btn-success" name="type" value="ADD"></td>
+		</tr>
+	</table>
+
+        <table class="table" style="width: 800px;;">
+            <h2>TYPE DETAILS</h2>
+            <tr>
+                <td>TYPE NAME</td>
+                <td>TYPE NAME</td>
+            </tr>
+
+            {% for row in data['type_det'] %}
+            <tr>
+                <td>{{ row['type_name'] }}</td>
+                <td>{{ row['type_model'] }}</td>
+
+
+            </tr>
+            {% endfor %}
+        </table>
+	</center>
+</form>
+
+{% include 'footer.html' %}

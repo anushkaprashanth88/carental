@@ -1,0 +1,36 @@
+{% include 'user_header.html' %}
+<br><br><br><br><br>
+
+<center>
+	<h2>VIEW ITEM DETAILS</h2>
+
+	<form method="post">
+		<table class="table" style="width: 900px;margin-top:50px">
+			<tr>
+				<th>OWNER NAME</th>
+				<th>ITEM NAME</th>
+				<th>QUANTITY</th>
+				<th>RENT/DAY</th>
+                <th>DESCRIPTION</th>
+				<th>IMAGE1</th>
+				
+				
+				
+				
+			</tr>
+			{% for row in obj %}
+			<tr>
+				<td>{{ row.owner.first_name }} {{ row.owner.second_name }}</td>
+				<td>{{ row.item_name }}</td>
+				<td>{{ row.quantity }}</td>
+                <td>{{ row.rent_per_item}}</td>
+				<td>{{ row.description }}</td>
+				<td><img src="/static/{{ row.image }}" style="width: 150px;height: 100px;"></td>
+				</tr>
+			{% endfor %}
+		</table>
+		
+	</form>
+	</center>
+
+{% include 'footer.html' %}

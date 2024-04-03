@@ -1,0 +1,33 @@
+{% include 'admin_header.html'%}
+<center>
+	<h2 style="padding-top: 200px;">VIEW USERS</h2>
+
+	<form method="post">
+		<table class="table" style="width: 1200px;">
+			<tr>
+				<th>NAME</th>
+				<th>PHONE</th>
+				<th>EMAIL</th>
+				<th>DRIVING LICENSE</th>
+				<th>ADHAR ID</th>
+				<th>USER IMAGE</th>
+				
+				
+			</tr>
+			{% for row in obj %}
+			<tr>
+				<td>{{ row.first_name }} {{row.second_name}}</td>
+				
+				<td>{{ row.phone }}</td>
+				<td>{{ row.email }}</td>
+				<td><a href="static/{{ row.driving_license_front}}"><img src="static/{{ row.driving_license_front}}" alt=""  style="width: 100px;height: 100px;"></a>
+					<a href="static/{{ row.driving_license_back}}"><img src="static/{{ row.driving_license_back}}" alt=""  style="width: 100px;height: 100px;"></a></td>
+				<td>{{row.adhar_card}}</td>
+				<td><a href="static/{{ row.picture }}"><img src="static/{{ row.picture }}" style="width: 100px;height: 100px;"></a></td>
+			{% endfor %}
+		</table>
+		
+	</form>
+	</center>
+
+{% include 'footer.html' %}

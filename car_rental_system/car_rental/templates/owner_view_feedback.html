@@ -1,0 +1,64 @@
+{% include 'owner_header.html' %}
+<form>
+
+	<center>
+		<h2 style="padding-top: 200px;">VIEW FEEDBACK</h2>
+	<table class="table" style="width: 500px;">
+		<tr>
+			<th>RATING</th>
+			<th>DESCRIPTION</th>
+			<th>DATE AND TIME</th>
+		</tr>
+		{% for row in obj %}
+			<tr>
+				<td>{{row.rating}}
+					<div class="rating">
+					{%for i in row.rating %}
+					<input type="radio" id="star5" name="rating" value='' />
+					<label for="star5" title="stars"> </label>
+					{%endfor%}
+				</div></td>
+				<td>{{ row.description }}</td>
+				<td>{{ row.datetime }}</td>
+			</tr>
+			{% endfor %}
+	</table>
+	</center>
+</form>
+
+<style>
+	.rating {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: center;
+		margin-top: -35px;
+	}
+
+	.rating input {
+		display: none;
+	}
+
+	.rating label {
+		color: #fdd835;
+		font-size: 2rem;
+		cursor: pointer;
+	}
+
+	.rating label:before {
+		content: '★';
+	}
+
+	.rating input:checked ~ label {
+		color: #fdd835;
+	}
+
+	.rating label:hover,
+	.rating label:hover ~ label {
+		color: #fdd835;
+	}
+</style>
+
+
+
+
+{% include 'footer.html' %}

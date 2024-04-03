@@ -1,0 +1,35 @@
+{% include 'owner_header.html' %}
+<center>
+	<h2 style="padding-top: 200px;">USER DETAILS</h2>
+	<form method="post">
+		<table class="table" style="width: 1200px;">
+			<tr>
+                <th>IMAGE</th>
+				<th>USER NAME</th>
+				<th>HOUSE NAME</th>
+				<th>PLACE</th>
+				<th>PINCODE</th>
+				<th>PHONE</th>
+				<th>EMAIL</th>
+				<th>ADHAR CARD</th> 
+                <th>DRIVING LICENCE</th>
+			</tr>
+			{% for row in obj %}
+			<tr>
+                <td><a href="/static/{{ row.picture }}"><img src="/static/{{ row.picture }}" alt="" style="width: 100px;height : 100px;"></a></td>
+				<th>{{ row.first_name }} {{ row.second_name }}</th>
+				<td>{{ row.house_name }}</td>
+				<td>{{ row.place }}</td>
+				<td>{{ row.pincode }}</td>
+				<td>{{ row.phone }}</td>
+				<td>{{ row.email }}</td>
+				<td>{{ row.adhar_card }}</td>
+                <td><a href="/static/{{ row.driving_license_front }}"><img src="/static/{{ row.driving_license_front }}" alt="" style="width: 100px;height : 100px;"></a>
+                    <a href="/static/{{ row.driving_license_back }}"><img src="/static/{{ row.driving_license_back }}" alt="" style="width: 100px;height : 100px;"></a></td>
+                <td><a href="owner_chats/{{row.login_id}}" class="btn btn-success">CHAT</a></td>
+			</tr>
+            {% endfor %}
+		</table>
+	</form>
+	</center>
+	{% include "footer.html" %}

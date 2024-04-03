@@ -1,0 +1,88 @@
+{% include 'owner_header.html' %}
+
+
+<center>
+	<h2 style="padding-top: 200px;">VIEW BOOKINGS</h2>
+
+	<form method="post">
+
+		<!-- <table class="table" style="width: 500px">
+			<tr>
+				<th><input type="radio" name="bk" value="item" id="">&nbsp;&nbsp;Item</th>
+				<th><input type="radio" name="bk" value="vehicle" id="">&nbsp;&nbsp;Vehicle</th>
+				<td><input type="submit" value="Filter" name="filter" class="btn btn-primary btn-sm"></td>
+			</tr>
+		</table> -->
+
+		<table class="table" style="width: 1200px;">
+			<tr>
+				<th>USER NAME</th>
+				<th>TYPE</th>
+				<!-- <th>VEHICLE NAME</th> -->
+				<th>FROM DATE</th>
+				<th>TO DATE</th>
+				<th>RETURNED DATE</th>
+				<th>BOOKED DATETIME</th>
+				<th>STATUS</th>
+
+				
+				
+				
+				
+			</tr>
+			{% for row in results %}
+			<tr>
+				<th><a href="/owner_view_user_details/{{row.user_id}}">{{ row.username }}</a></th>
+				<td>{{ row.book_for_type }} Driver:  {{ row.driver }}</td>
+				<td>{{ row.from_date }}</td>
+				<td>{{ row.to_date }}</td>
+				<td>{{ row.returned_date }}</td>
+				<td>{{ row.booked_datetime }}</td>
+				
+				
+				<td>{{ row.booking_status}}</td>
+				{% if row.booking_status == "pending" %}
+				<td><a class="btn btn-success" href="/owner_accept_booking/{{ row.booking_id}}">Accept</a>
+					<a class="btn btn-danger" href="/owner_reject_booking/{{ row.booking_id}} ">Reject</a></td>
+
+{% elif row.booking_status == "advance paid" %}
+
+<td><a class="btn btn-info" href="/owner_view_payments/{{ row.booking_id }}">View Payment</a>
+					<a class="btn btn-primary" href="/ready_to_deliver/{{ row.booking_id }}">Ready To Deliver</a></td>
+
+
+{% elif row.booking_status == "Your Vehicle Is Ready To Deliver" %}
+
+<td><a class="btn btn-info" href="/owner_view_payments/{{ row.booking_id }}">View Payment</a>
+					<a class="btn btn-primary" href="/delivered/{{ row.booking_id }}">Delivered</a></td>
+					
+
+
+				{% elif row.booking_status == "advance paid" or row.booking_status == "Return Req Accepted" or row.booking_status == "Delivered" %}
+				<td><a class="btn btn-info" href="owner_view_payments/{{ row.booking_id }}">View Payment</a>
+					<!-- <a class="btn btn-primary" href="http://www.google.com/maps?q={{ row.latitude }},{{ row.logitu }}">Track </a></td> -->
+
+				{% elif row.booking_status == "Return Req" %}
+				<td><a class="btn btn-info" href="/owner_view_payments/{{ row.booking_id }}">View Payment</a>
+					<a class="btn btn-success" href="/owner_accept_return/{{ row.from_date }}/{{ row.to_date }}/{{ row.returned_date }}/{{ row.balance_amount }}/{{ row.book_for_id}}/{{ row.booking_id }}/{{row.book_for_type}}">Accept Return</a>
+					<!-- <a class="btn btn-primary" href="http://www.google.com/maps?q={{ row.user.latitude }},{{ row.user.logitu }}">Track </a></td> -->
+					<!-- <a class="btn btn-primary" href="http://www.google.com/maps?q={{ row.latitude }},{{ row.logitu }}">Track</a></td> -->
+					<!-- <a class="btn btn-outline-dark" href="/owner_view_payments/{{ row.user.latitude }}/{{ row.user.logitu }}">Location </a></td> -->
+
+			
+			
+				{% elif row.booking_status == "returned" %}
+				<td><a class="btn btn-primary" href="/owner_view_payments/{{ row.booking_id }}">View Payment</a>
+					 <a class="btn btn-info" href="/owner_view_feedback/{{ row.booking_id }}">View Feedback</a></td> 
+				<!-- <td><a href="owner_view_payments?o_id={{ row.owner_id}}&v_id={{ row.vehicle_id}}&b_id={{ row.booking_id}}">VIEW COMMISION</a> -->
+				{% endif %}
+				
+			</tr>
+			{% endfor %}
+		</table>
+		
+	</form>
+	</center>
+
+
+	{% include "footer.html" %}

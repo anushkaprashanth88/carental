@@ -1,0 +1,93 @@
+{% include 'public_header.html'%}
+<style>
+
+	h2{
+		padding-top: 200px;
+	}
+	td,h2{
+		color: aliceblue;
+	}
+</style>
+
+<form method="post" enctype="multipart/form-data">
+	<CENTER>
+	
+<h2>OWNER REGISTRATION</h2><br>
+	<table class="table" style="width: 500px;">
+		<tr>
+			<td>FIRST NAME</td>
+			<td><input type="text" class="form-control" pattern="[a-zA-Z/s]{0,20}" title="enter alphabets only" required="" name="fname"></td>
+		</tr>
+		<tr>
+			<td>SECOND NAME</td>
+			<td><input type="text" class="form-control" pattern="[a-zA-Z/s]{0,20}" title="enter alphabets only" required="" name="sname"></td>
+		</tr>
+		<tr>
+			<td>PLACE</td>
+			<td><input type="text" class="form-control" pattern="[a-zA-Z/s]{0,20}" title="enter alphabets only" required="" name="place"></td>
+		</tr>
+		
+		<tr>
+			<td>PHONE</td>
+			<td><input type="text" class="form-control" pattern="[0-9]{10}" title="enter valid phonenumebr" required="" name="phone"></td>
+		</tr>
+		<tr>
+			<td>EMAIL</td>
+			<td><input type="email" class="form-control" required="" name="email"></td>
+		</tr>
+		
+		<tr>
+			<td>USER IMAGE</td>
+			<td><input type="file" required="" class="form-control" name="image"></td>
+		</tr>
+		<tr>
+			<td>USER NAME</td>
+			<td><input type="text" class="form-control" pattern="[a-zA-Z/s]{0,20}" title="enter alphabets only" required="" name="username"></td>
+		</tr>
+		<tr>
+			<td>PASSWORD</td>
+			<td><input type="password" class="form-control" required="" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" title="Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character from @$!%*?&. Minimum length: 8 characters."></td>
+		</tr>
+		 <tr>
+            <td>CONFIRM PASSWORD</td>
+            <td><input type="password" id="confirm_password" class="form-control" required="" name="confirm_password" oninput="checkPassword()"></td>
+        </tr>
+
+		<tr>
+			<td align="center" colspan="2"><input type="submit"  class="btn btn-success" name="ok" value="REGISTER"></td>
+		</tr>
+		
+
+
+	</table>
+	</CENTER>
+	
+
+</form>
+<script>
+    function checkPassword() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm_password").value;
+
+        if (password !== confirmPassword) {
+            document.getElementById("confirm_password").setCustomValidity("Passwords do not match.");
+        } else {
+            document.getElementById("confirm_password").setCustomValidity('');
+        }
+    }
+
+    function validateForm() {
+        checkPassword(); // Call checkPassword to ensure password matching before submitting
+        var form = document.querySelector('form');
+        if (!form.checkValidity()) {
+            // If form is not valid, prevent submission
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<br><br><br><br><br>
+{% include 'footer.html'%}

@@ -1,0 +1,115 @@
+{% include 'public_header.html'%}
+
+
+<form method="post" enctype="multipart/form-data" style="margin-top: 50px;">
+	<CENTER>
+		<BR>
+		<br>
+		<br>
+		<h2>USER REGISTRATION</h2><br>
+
+
+	<table class="table" style="width: 650px;">
+		<tr>
+			<td>FIRST NAME</td>
+			<td><input type="text" class="form-control" pattern="[a-zA-Z/s]{0,20}" title="enter alphabets only" required="" name="fname"></td>
+		</tr>
+		<tr>
+			<td>SECOND NAME</td>
+			<td><input type="text" class="form-control" pattern="[a-zA-Z/s]{0,20}" title="enter alphabets only" required="" name="sname"></td>
+		</tr>
+		<tr>
+			<td>HOUSE NAME</td>
+			<td><input type="text" class="form-control" pattern="[a-zA-Z/s]{0,20}" title="enter alphabets only" required="" name="hname"></td>
+		</tr>
+		<tr>
+			<td>PLACE</td>
+			<td><input type="text" class="form-control" pattern="[a-zA-Z/s]{0,20}" title="enter alphabets only" required="" name="place"></td>
+		</tr>
+		<tr>
+			<td>PINCODE</td>
+			<td><input type="text" class="form-control" pattern="[0-9]{6}" title="enter valid pincode" required="" name="pincode"></td>
+		</tr>
+		<tr>
+			<td>PHONE</td>
+			<td><input type="text" class="form-control" pattern="[0-9]{10}" title="enter valid phonenumebr" required="" name="phone"></td>
+		</tr>
+		<tr>
+			<td>EMAIL</td>
+			<td><input type="email" class="form-control" required="" name="email"></td>
+		</tr>
+		<tr>
+			<td>ADHAR CARD NUMBER</td>
+			<td><input type="text" required="" class="form-control" name="adhar" pattern="[0-9]{12}" title="enter valid adhaar number"></td>
+		</tr>
+		<tr>
+			<td>DRIVING LICENSE FRONT</td>
+			<td><input type="file" required="" class="form-control" name="dfront"></td>
+		</tr>
+		<tr>
+			<td>DRIVING LICENSE BACK</td>
+			<td><input type="file" required="" class="form-control" name="dback"></td>
+		</tr>
+		<tr>
+			<td>USER IMAGE</td>
+			<td><input type="file" required="" class="form-control" name="image"></td>
+		</tr>
+		<tr>
+			<td>USER NAME</td>
+			<td><input type="text" class="form-control" pattern="[a-zA-Z/s]{0,20}" title="enter alphabets only" required="" name="username"></td>
+		</tr>
+		<tr>
+			<td>PASSWORD</td>
+			<td><input type="password" class="form-control" required="" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" title="Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character from @$!%*?&. Minimum length: 8 characters."></td>
+		</tr>
+		<tr>
+            <td>CONFIRM PASSWORD</td>
+            <td><input type="password" class="form-control" required="" name="confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" oninput="checkPassword(this)"></td>
+        </tr>
+		<tr>
+			<td>LATITUDE</td>
+			<td style="color: black;"><input type="text"  name="latitude" id="slati"  class="form-control" required></td>	
+			
+			<!-- <td><a onclick="myFunction();"  class="btn btn-danger" required>View Map</a></td> -->
+		</tr>
+		<tr>
+			<td>LONGITUDE</td>
+			<td style="color: black;"><input type="text" name="longitude" id="elongi"  required  class="form-control"></td>	
+		</tr>
+		<tr>
+			<td align="center" colspan="2"><input type="submit"  class="form-control" name="register" value="REGISTER"></td>
+		</tr>
+		
+	</table>
+	</CENTER>
+	
+</form>
+
+
+
+<td>
+	<div id="dvMap" style="width: 600px; height: 500px;"></div>
+  </td>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3MPnSnyWwNmpnVEFkaddVvy_GWtxSejs&sensor=false"></script>
+<script type="text/javascript">
+// window.onload = function () {
+function myFunction() {
+var mapOptions = {
+	center: new google.maps.LatLng(9.9763482, 76.286272),
+	zoom: 14,
+	mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+var infoWindow = new google.maps.InfoWindow();
+var latlngbounds = new google.maps.LatLngBounds();
+var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+google.maps.event.addListener(map, 'click', function (e) {
+	alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
+	document.getElementById('slati').value = e.latLng.lat();
+	document.getElementById('elongi').value = e.latLng.lng();
+
+
+});
+}
+</script>
+{% include 'footer.html'%}

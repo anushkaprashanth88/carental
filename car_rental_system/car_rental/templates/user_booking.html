@@ -1,0 +1,105 @@
+{% include 'user_header.html'%}
+	<!-- banner-text -->
+	<div id="wrapper">
+
+		<!-- Slideshow 1 -->
+		<div class="rslides_container">
+			<ul class="rslides" id="slider1">
+		
+			
+				<li>
+					<div class="banner-img three">
+						<div class="bs-slider-overlay">
+							<div class="banner-info text-center">
+<form method="post">
+	<center>
+		<h3>BOOKING</h3>
+		<BR>
+		<br><br>
+
+	<table class="table" style="width: 500px;">
+		<tr>
+			{% for row in data.booking_det %}
+			<td>VEHICLE ID</td>
+			<td>{{ row.vehicle_id }}</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td>FROM DATE</td>
+			<td><input type="DATE" name="fdate" class="form-control"></td>
+		</tr>
+		<tr>
+			<td>FROM TIME</td>
+			<td><input type="time" name="ftime" class="form-control"></td>
+		</tr>
+		<tr>
+			<td>TODATE</td>
+			<td><input type="date" name="tdate" class="form-control"></td>
+		</tr>
+		<tr>
+			<td>TO TIME</td>
+			<td><input type="time" name="ttime" class="form-control"></td>
+		</tr>
+		<tr>
+			<td>Do you need Driver?</td>
+			<td><input type="radio" name="dri" id="" value="Yes" checked>Yes
+			<input type="radio" name="dri" id="" value="No">No</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" name="ok" value="BOOK" class="btn btn-primary"></td>
+		</tr>
+	</table>
+</BR></center></form>
+
+
+</div>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+</div>
+<!-- //banner -->
+	<!-- <center>
+	<h2 style="color: black;font-family:'Courier New', Courier, monospace">VIEW PREVIOUS BOOKINGS</h2>
+
+	<form method="post">
+		<table class="table table-hover">
+			<tr>
+				
+				<th style="color: black;">VEHICLE NAME</th>
+				<th style="color: black;">FROM DATE</th>
+				<th style="color: black;">TO DATE</th>
+				<th style="color: black;">RETURNED DATE</th>
+				<th style="color: black;">BOOKED DATETIME</th>
+				<th style="color: black;">PER DAY RENT</th>
+				<th style="color: black;">STATUS</th>
+			</tr>
+			{% for row in obj %}
+			<tr>
+				
+				<td style="color: black;">{{ row.book_for_id.brand }}</td>
+				<td style="color: black;">{{ row.from_date }}</td>
+				<td style="color: black;">{{ row.to_date }}</td>
+				<td style="color: black;">{{ row.returned_date }}</td>
+				<td style="color: black;">{{ row.booked_datetime }}</td>
+				<td style="color: black;">{{ row.book_for_id.per_day_rent}}</td>		
+				<td style="color: black;">{{ row.booking_status}}</td>
+				{% if row.booking_status == "APPROVED" %}
+				<td><a href="/user_payment/{{id}}/{{amt}}/{{row.booking_id}}">PAY ADVANCE</a>
+				{% elif row.booking_status == "Delivered" %}
+				<td><a href="/user_return_req/{{ row.book_for_id }}/{{ row.booking_id}}">RETURN VEHICLE</a>
+				{% elif row.booking_status == "Return Req Accepted" %}
+				<td><a href="/user_return_vehicle/{{ row.book_for_id }}/{{ row.booking_id}}">RETURN VEHICLE</a>
+
+				{% elif row.booking_status == "returned" %}
+				<td><a href="/user_feedback/{{ row.booking_id}}">SEND FEEDBACK</a>
+					{%endif%}
+			</tr>
+			{% endfor %}		
+		</table>	
+	</form>
+	</center> -->
+{%include 'footer.html'%}
